@@ -21,6 +21,15 @@ class Profile(models.Model):
     bio = models.TextField()
     image = models.ImageField(upload_to='profile_pics', default='default.jpg')
     verified = models.BooleanField(default=False)
+    is_builder = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE, null=True)
+    receiver = models.ForeignKey(User, related_name='receiver', on_delete=models.CASCADE, null=True)
+    message = models.TextField(null=True, blank=True)
+    attachment = models.URLField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
