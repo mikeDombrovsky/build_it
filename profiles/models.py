@@ -17,10 +17,10 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=100, blank=True)
+    surname = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=100, blank=True)
-    occupation = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=100, blank=True)
     state_region = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
@@ -29,6 +29,33 @@ class Profile(models.Model):
     verified = models.BooleanField(default=False)
     is_builder = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    services = models.ManyToManyField('Service', related_name='services', blank=True)
+    tasks = models.ManyToManyField('Task', related_name='tasks', blank=True)
+
+
+class Task(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    assignee = models.ForeignKey(User, related_name='assignee', on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.CharField(max_length=100)
+    budget = models.DecimalField(max_digits=10, decimal_places=2)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    address = models.CharField(max_length=100)
+
+
+class Service(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    category = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    measure = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Message(models.Model):
