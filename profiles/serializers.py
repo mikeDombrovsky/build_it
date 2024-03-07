@@ -17,7 +17,10 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['id', 'user', 'full_name', 'title', 'bio', 'image', 'verified']
+        fields = ['id', 'user', 'name', 'surname',
+                  'title', 'phone_number', 'country', 'state_region',
+                  'city', 'bio', 'image', 'verified',
+                  'is_builder', 'created_at', 'services', 'tasks']
         extra_kwargs = {
             'user': {'read_only': True}
         }
