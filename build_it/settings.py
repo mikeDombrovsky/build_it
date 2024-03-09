@@ -37,9 +37,6 @@ if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 
 # Application definition
 
@@ -152,9 +149,9 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
-if not DEBUG:
-    DATABASES = {'default': dj_database_url.config(default='postgresql://postgres:postgres@localhost:5432/build_it_server',
-        conn_max_age=600)}
+# if not DEBUG:
+#     DATABASES = {'default': dj_database_url.config(default='postgresql://postgres:postgres@localhost:5432/build_it_server',
+#         conn_max_age=600)}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -188,7 +185,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
