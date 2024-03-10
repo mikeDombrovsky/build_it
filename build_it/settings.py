@@ -30,13 +30,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".build-it-server.onrender.com"]
+ALLOWED_HOSTS = [".build-it-server.onrender.com", "localhost", ]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
-
 
 # Application definition
 
@@ -54,9 +52,11 @@ INSTALLED_APPS = [
     'profiles'
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:8080",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://localhost:3000",
+    ]
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
