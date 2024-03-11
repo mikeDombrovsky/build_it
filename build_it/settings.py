@@ -28,14 +28,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('IS_DEBUG')
 
-ALLOWED_HOSTS = [f"{os.getenv("SERVER_BASE_URL")}",
-                 "http://localhost",
-                 "http://127.0.0.1",
-                 'http://localhost:3000',
-                 'localhost',
-                 '*']
+ALLOWED_HOSTS = [
+    # 'localhost',
+    # f"{os.getenv("SERVER_BASE_URL")}",
+    # "http://localhost",
+    # "http://127.0.0.1",
+    # 'http://localhost:3000',
+    '*'
+]
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
