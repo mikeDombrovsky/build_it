@@ -30,5 +30,7 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/token/logout/', views.LogoutView.as_view(), name='logout'),
     path('api/register/', views.RegisterView.as_view(), name='register'),
+    path('api/profile/', views.ProfileView.as_view(), name='profile'),
+    path('api/profiles/', views.ProfileListView.as_view(), name='profiles'),
     path('api/', include('profiles.urls')),
 ]

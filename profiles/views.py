@@ -1,3 +1,4 @@
+import rest_framework.pagination
 from django.shortcuts import render
 from rest_framework import status, generics
 
@@ -6,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from profiles.models import User
+from profiles.models import User, Profile
 from profiles.serializers import RegisterSerializer, ProfileSerializer
 
 
@@ -38,5 +39,26 @@ class ProfileView(APIView):
         profile = user.profile
 
         serializer = ProfileSerializer(profile, request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
-        return Response({serializer.data})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        user = request.user
+        profile = user.profile
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+
+
+class ProfileListView(APIView):
+    permission_classes = (IsAuthenticated,)
+    pagination_class = rest_framework.pagination.LimitOffsetPagination
+
+    def get(self, request):
+        profiles = Profile.objects.all(is_builder=True, verified=True)
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
+
+
