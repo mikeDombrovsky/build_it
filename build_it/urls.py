@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -32,5 +34,7 @@ urlpatterns = [
     path('api/register/', views.RegisterView.as_view(), name='register'),
     path('api/profile/', views.ProfileView.as_view(), name='profile'),
     path('api/profiles/', views.ProfileListView.as_view(), name='profiles'),
-    path('api/', include('profiles.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

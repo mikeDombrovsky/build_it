@@ -60,5 +60,3 @@ class ProfileListView(APIView):
         profiles = Profile.objects.all(is_builder=True, verified=True)
         serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
-
-

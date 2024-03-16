@@ -25,7 +25,7 @@ class Profile(models.Model):
     state_region = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
     bio = models.TextField(blank=True)
-    image = models.ImageField(upload_to='profile_pics', default='default.jpg')
+    image = models.ImageField(upload_to='profile_pics/', default='default.jpg')
     verified = models.BooleanField(default=False)
     is_builder = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
