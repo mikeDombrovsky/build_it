@@ -66,13 +66,13 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://localhost:3000",
-    "http://build-it-server.onrender.com",
+    "http://localhost:8000/",
+    "http://localhost:3000/",
+    "http://build-it-server.onrender.com/*",
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = 'profiles.User'
 
