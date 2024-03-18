@@ -66,9 +66,11 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000/",
-    "http://localhost:3000/",
-    "http://build-it-server.onrender.com/*",
+    "http://localhost:8000",
+    "http://localhost:3000",
+    "http://build-it-server.onrender.com",
+    "https://build-it-server.onrender.com",
+    "https://built-it-app.onrender.com"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
