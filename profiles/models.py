@@ -45,6 +45,14 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=100, blank=True)
+    attachments = models.ManyToManyField('Attachment', related_name='attachments', blank=True)
+
+
+class Attachment(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    attachment = models.FileField(upload_to='attachments/')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Service(models.Model):

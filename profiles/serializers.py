@@ -2,7 +2,7 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
-from .models import User, Profile, Message
+from .models import User, Profile, Message, Task
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -61,3 +61,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'customer', 'assignee', 'title', 'description', 'category', 'budget', 'start_date', 'end_date', 'created_at', 'updated_at', 'address']
+        extra_kwargs = {
+            'customer': {'read_only': True},
+            'assignee': {'read_only': True}
+        }
+

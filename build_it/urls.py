@@ -34,6 +34,7 @@ urlpatterns = [
     path('api/register/', views.RegisterView.as_view(), name='register'),
     path('api/profile/', views.ProfileView.as_view(), name='profile'),
     path('api/profiles/', views.ProfileListView.as_view(), name='profiles'),
+
 ]
 
 if settings.DEBUG:
