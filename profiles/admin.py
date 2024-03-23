@@ -1,19 +1,9 @@
 from django.contrib import admin
 
-from profiles.models import User, Profile, Message, Task, Service, Attachment
-
-# class UserAdmin(admin.ModelAdmin):
-#     list_editable = ['verified']
-#     list_display = ['username', 'email']
-#
-#
-# class ProfileAdmin(admin.ModelAdmin):
-#     list_display = ['user', 'wallet', 'verified']
-
+from profiles.models import User, Profile, Message, Task, Service
 
 admin.site.register(User)
 admin.site.register(Profile)
 admin.site.register(Message)
 admin.site.register(Task)
 admin.site.register(Service)
-admin.site.register(Attachment)

@@ -61,29 +61,9 @@ class Task(models.Model):
     address = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to='task_images/', default='no_image.jpg', blank=True, null=True)
-    # attachments = models.ManyToManyField('Attachment', related_name='attachments', blank=True, null=True)
 
     def __str__(self):
         return self.title + ' - ' + self.customer.email
-
-
-class Attachment(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    attachment = models.FileField(upload_to='attachments/')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.attachment.name
-
-
-@receiver(post_save, sender=Task)
-def create_attachment(instance, created, **kwargs):
-    if created:
-        images = instance.attachments
-        print(images, type(images))
-
-        # for image in images:
-        #     Attachment.objects.create(task=instance, attachment=image)
 
 
 class Service(models.Model):
