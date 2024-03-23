@@ -70,7 +70,7 @@ class TaskSerializer(serializers.ModelSerializer):
             'id', 'customer', 'assignee', 'title',
             'description', 'category', 'budget',
             'start_date', 'end_date',
-            'created_at', 'updated_at', 'address']
+            'created_at', 'updated_at', 'address', 'phone_number', 'image']
         extra_kwargs = {
             'customer': {'read_only': True},
             'assignee': {'read_only': True}
