@@ -34,6 +34,8 @@ urlpatterns = [
     path('api/register/', views.RegisterView.as_view(), name='register'),
     path('api/profile/', views.ProfileView.as_view(), name='profile'),
     path('api/profiles/', views.ProfileListView.as_view(), name='profiles'),
+    path('api/tasks/', views.TaskListView.as_view(), name='tasks'),
+    path('api/task/', views.TaskView.as_view(), name='task'),
 
 ]
 
