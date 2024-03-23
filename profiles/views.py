@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from profiles.models import User, Profile
-from profiles.serializers import RegisterSerializer, ProfileSerializer
+from profiles.serializers import RegisterSerializer, ProfileSerializer, TaskSerializer
 
 
 class RegisterView(generics.CreateAPIView):
@@ -59,4 +59,25 @@ class ProfileListView(APIView):
     def get(self, request):
         profiles = Profile.objects.all(is_builder=True, verified=True)
         serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
+
+
+class TaskView(APIView):
+    permission_classes = (IsAuthenticated,)
+    pagination_class = rest_framework.pagination.LimitOffsetPagination
+
+    def post(self, request):
+        user = request.user
+
+        serializer = TaskSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self, request):
+        user = request.user
+        task = user.task
+        serializer = TaskSerializer(task)
         return Response(serializer.data)

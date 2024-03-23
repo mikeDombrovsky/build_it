@@ -16,7 +16,7 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
     surname = models.CharField(max_length=100, blank=True)
     title = models.CharField(max_length=100, blank=True)

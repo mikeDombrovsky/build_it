@@ -66,9 +66,12 @@ class RegisterSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ['id', 'customer', 'assignee', 'title', 'description', 'category', 'budget', 'start_date', 'end_date', 'created_at', 'updated_at', 'address']
+        fields = [
+            'id', 'customer', 'assignee', 'title',
+            'description', 'category', 'budget',
+            'start_date', 'end_date',
+            'created_at', 'updated_at', 'address']
         extra_kwargs = {
             'customer': {'read_only': True},
             'assignee': {'read_only': True}
         }
-
