@@ -1,8 +1,11 @@
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+from build_it.settings import UPLOAD_ROOT
 
 
 class User(AbstractUser):
@@ -15,6 +18,9 @@ class User(AbstractUser):
         profile = Profile.objects.get(user=self)
 
 
+upload_storage = FileSystemStorage(location=UPLOAD_ROOT, base_url='/uploads')
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
@@ -25,7 +31,7 @@ class Profile(models.Model):
     state_region = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
     bio = models.TextField(blank=True)
-    image = models.ImageField(upload_to='profile_pics/', default='default.jpg')
+    image = models.ImageField(upload_to='profile_pics/', default='default.jpg', storage=upload_storage)
     verified = models.BooleanField(default=False)
     is_builder = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -60,7 +66,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
-    image = models.ImageField(upload_to='task_images/', default='no_image.jpg', blank=True, null=True)
+    image = models.ImageField(upload_to='task_images/', default='no_image.jpg', blank=True, null=True,  storage=upload_storage)
 
     def __str__(self):
         return self.title + ' - ' + self.customer.email

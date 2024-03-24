@@ -21,11 +21,13 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Media settings (determines where images will be uploaded)
 
 SOME_ENV_VAR = os.getenv('SOME_ENV_VAR')
 
-MEDIA_URL = '/disc/media/'
+# Media settings (determines where images will be uploaded)
+MEDIA_URL = 'media/'
+
+UPLOAD_ROOT = '/disc/media'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
