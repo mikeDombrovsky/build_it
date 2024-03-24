@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Media settings (determines where images will be uploaded)
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/disc/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 

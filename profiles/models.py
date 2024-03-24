@@ -60,7 +60,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
-    image = models.ImageField(upload_to='../../../../disc/task_images/', default='no_image.jpg', blank=True, null=True)
+    image = models.ImageField(upload_to='task_images/', default='no_image.jpg', blank=True, null=True)
 
     def __str__(self):
         return self.title + ' - ' + self.customer.email
