@@ -100,3 +100,6 @@ class TaskListView(APIView):
         tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
+
+
+# TODO: add filtering to TaskListView

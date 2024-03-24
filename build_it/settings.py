@@ -37,9 +37,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('IS_DEBUG')
 
 ALLOWED_HOSTS = [
-    # 'localhost',
-    # f"{os.getenv("SERVER_BASE_URL")}",
-    # "http://localhost",
     # "http://127.0.0.1",
     # 'http://localhost:3000',
     '*'
